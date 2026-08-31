@@ -9,6 +9,8 @@ Funcionalidades
 - Descrição
 - Cores disponíveis
 
+Feito com gitFlow
+
 
 Pré-requisitos
 
@@ -24,3 +26,7 @@ npm init -y
 
  Instala o Express (servidor) e o CORS (permissão de acesso)
 npm install express cors
+
+
+Jose Edilson Da Silva Filho
+Leonardo Felix
