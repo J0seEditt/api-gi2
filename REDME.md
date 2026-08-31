@@ -8,5 +8,19 @@ Funcionalidades
 - Preço dos veículos
 - Descrição
 - Cores disponíveis
-- Fotos dos carros
-- Design responsivo
+
+
+Pré-requisitos
+
+Ter o Node.js instalado em sua máquina.
+
+O Node.js já inclui o gerenciador de pacotes NPM por padrão.
+
+2. Instalação das Dependências
+No terminal, navegue até a raiz do projeto e execute os comandos abaixo. Eles servem para inicializar o ambiente e instalar o framework web e o módulo de segurança de rotas
+
+ Inicializa o projeto Node.js criando o arquivo package.json
+npm init -y
+
+ Instala o Express (servidor) e o CORS (permissão de acesso)
+npm install express cors
