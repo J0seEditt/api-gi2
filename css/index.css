@@ -1,21 +1,22 @@
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-
 html {
     scroll-behavior: smooth;
 }
-
 
 body {
     font-family: "Inter", sans-serif;
     background-color: #f5f6fa;
     color: #1a1a1a;
 }
+
+/* =========================
+   HEADER
+========================= */
 
 .header {
     width: 100%;
@@ -35,45 +36,37 @@ body {
     z-index: 100;
 }
 
-
 .logo {
     font-size: 24px;
     font-weight: 800;
     letter-spacing: -1px;
 }
 
-
 .logo span {
     color: #475edb;
 }
-
 
 .menu {
     display: flex;
     gap: 30px;
 }
 
-
 .menu a {
     text-decoration: none;
     color: #d1d1d1;
     font-size: 14px;
-
     transition: 0.3s;
 }
-
 
 .menu a:hover {
     color: white;
 }
-
 
 /* =========================
    HERO
 ========================= */
 
 .hero {
-
     min-height: 500px;
 
     display: flex;
@@ -86,8 +79,8 @@ body {
     background:
         linear-gradient(
             90deg,
-            rgba(0,0,0,0.95),
-            rgba(0,0,0,0.55)
+            rgba(0, 0, 0, 0.95),
+            rgba(0, 0, 0, 0.55)
         ),
         url("https://content-hub.imgix.net/MVslwaifn8TAeDBTd1onY/814ca0190c44708dbe9ba6fc705e79e4/Porsche_911_gt3_rs_driving_track_wallpaper_hero_desktop.jpg?w=2064");
 
@@ -95,49 +88,35 @@ body {
     background-position: center;
 }
 
-
 .hero-content {
     max-width: 650px;
 }
+
 .hero h1 {
-
     font-size: clamp(42px, 6vw, 75px);
-
     line-height: 1.05;
-
     margin-bottom: 20px;
-
     font-weight: 800;
 }
-
 
 .hero h1 span {
     color: #475edb;
 }
 
-
 .hero p {
-
     font-size: 17px;
-
     line-height: 1.7;
-
     color: #d1d1d1;
-
     max-width: 550px;
-
     margin-bottom: 30px;
 }
 
-
 .btn {
-
     display: inline-block;
 
     background: #475edb;
 
     color: white;
-
     text-decoration: none;
 
     padding: 15px 28px;
@@ -149,42 +128,30 @@ body {
     transition: 0.3s;
 }
 
-
 .btn:hover {
-
-    transform: translateY(-3px);                                            
-
-    background: #e62e24;
-
+    transform: translateY(-3px);
+    background: #3447b8;
 }
-
 
 /* =========================
    RANKING
 ========================= */
 
 .ranking {
-
     padding: 90px 8%;
-
 }
 
-
 .section-header {
-
     display: flex;
 
     justify-content: space-between;
 
-    align-items: end;
+    align-items: flex-end;
 
     margin-bottom: 40px;
-
 }
 
-
 .section-subtitle {
-
     color: #475edb;
 
     font-size: 13px;
@@ -192,49 +159,42 @@ body {
     font-weight: 700;
 
     letter-spacing: 2px;
-
 }
 
-
 .section-header h2 {
-
     font-size: 36px;
 
     margin-top: 8px;
-
 }
 
-
 .section-header p {
-
     color: #777;
 
     font-size: 14px;
-
 }
 
-
 /* =========================
-   GRID DE CARROS
+   GRID DOS CARROS
 ========================= */
 
 .cars-container {
-
     display: grid;
 
-    grid-template-columns:
-        repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
 
     gap: 25px;
 
+    width: 100%;
 }
-
 
 /* =========================
    CARD
 ========================= */
 
 .car-card {
+    width: 100px;
+
+    min-width: 0;
 
     background: white;
 
@@ -243,62 +203,50 @@ body {
     overflow: hidden;
 
     box-shadow:
-        0 5px 20px rgba(0,0,0,0.08);
+        0 5px 20px rgba(0, 0, 0, 0.08);
 
     transition: 0.35s;
 
     position: relative;
-
 }
 
-
 .car-card:hover {
-
     transform: translateY(-8px);
 
     box-shadow:
-        0 20px 40px rgba(0,0,0,0.15);
-
+        0 20px 40px rgba(0, 0, 0, 0.15);
 }
-
 
 /* =========================
    IMAGEM
 ========================= */
 
 .car-image {
+    display: block;
 
     width: 100%;
 
     height: 220px;
 
     object-fit: cover;
-
-    display: block;
-
 }
 
-
 /* =========================
-   POSIÇÃO NO RANKING
+   POSIÇÃO
 ========================= */
 
 .ranking-number {
-
     position: absolute;
 
     top: 15px;
-
     left: 15px;
 
     width: 42px;
-
     height: 42px;
 
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
     background: #475edb;
@@ -311,21 +259,19 @@ body {
 
     font-size: 15px;
 
+    z-index: 2;
 }
 
-
 /* =========================
-   CONTEÚDO DO CARD
+   INFORMAÇÕES
 ========================= */
 
 .car-info {
-
     padding: 22px;
-
 }
 
-
 .car-brand {
+    display: block;
 
     color: #475edb;
 
@@ -337,20 +283,18 @@ body {
 
     letter-spacing: 1px;
 
+    margin-bottom: 5px;
 }
-
 
 .car-name {
-
     font-size: 23px;
 
-    margin: 5px 0 12px;
+    margin-bottom: 12px;
 
+    line-height: 1.2;
 }
 
-
 .car-description {
-
     font-size: 14px;
 
     line-height: 1.6;
@@ -358,26 +302,22 @@ body {
     color: #777;
 
     margin-bottom: 20px;
-
 }
-
 
 /* =========================
    PREÇO
 ========================= */
 
 .car-price {
-
     font-size: 22px;
 
     font-weight: 800;
 
     margin-bottom: 20px;
-
 }
 
-
 .car-price span {
+    display: block;
 
     font-size: 12px;
 
@@ -385,56 +325,43 @@ body {
 
     font-weight: 400;
 
-    display: block;
-
     margin-bottom: 3px;
-
 }
-
 
 /* =========================
    CORES
 ========================= */
 
 .colors-title {
-
     font-size: 12px;
 
     color: #777;
 
     margin-bottom: 10px;
-
 }
 
-
 .colors {
-
     display: flex;
 
     gap: 10px;
 
+    flex-wrap: wrap;
 }
 
-
 .color {
-
     width: 20px;
-
     height: 20px;
 
     border-radius: 50%;
 
     border: 2px solid #ddd;
-
 }
-
 
 /* =========================
    LOADING
 ========================= */
 
 .loading {
-
     grid-column: 1 / -1;
 
     text-align: center;
@@ -444,16 +371,13 @@ body {
     font-size: 18px;
 
     color: #777;
-
 }
-
 
 /* =========================
    FOOTER
 ========================= */
 
 footer {
-
     background: #111;
 
     color: white;
@@ -465,81 +389,95 @@ footer {
     justify-content: space-between;
 
     align-items: center;
-
 }
 
-
 footer p {
-
     color: #888;
 
     font-size: 13px;
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 1000px) {
+
+    .cars-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 
 }
 
-
 /* =========================
-   RESPONSIVIDADE
+   CELULAR
 ========================= */
 
 @media (max-width: 768px) {
 
     .header {
-
         padding: 0 5%;
-
     }
-
 
     .menu {
-
         display: none;
-
     }
-
 
     .hero {
-
         padding: 70px 5%;
-
         min-height: 450px;
-
     }
-
 
     .ranking {
-
         padding: 60px 5%;
-
     }
 
-
     .section-header {
-
         flex-direction: column;
 
         align-items: flex-start;
 
         gap: 15px;
-
     }
-
 
     .section-header h2 {
-
         font-size: 28px;
-
     }
 
+    .cars-container {
+        grid-template-columns: 1fr;
+    }
 
     footer {
-
         flex-direction: column;
 
         gap: 15px;
 
         text-align: center;
+    }
 
+}
+
+/* =========================
+   CELULAR PEQUENO
+========================= */
+
+@media (max-width: 480px) {
+
+    .hero h1 {
+        font-size: 42px;
+    }
+
+    .hero p {
+        font-size: 15px;
+    }
+
+    .car-image {
+        height: 200px;
+    }
+
+    .car-info {
+        padding: 18px;
     }
 
 }
