@@ -8,9 +8,7 @@ const PORT = 8080;
 
 app.use(express.json());
 
-app.get('/serve', (req, res) => {
-
-    const listaCarros = {
+const listaCarros = {
         carros: [
             {
                 posicao: 1,
@@ -183,9 +181,19 @@ app.get('/serve', (req, res) => {
             }
         ]
     };
+
+app.get('/serve', (req, res) => {
     res.json(listaCarros);
 });
-
+app.post('/serve', (req, res) => {
+    const novoCarro = req.body;
+    
+    listaCarros.carros.push(novoCarro);
+    res.status(201).json({ 
+        mensagem: "Produto armazenado com sucesso!", 
+        produto: novoCarro 
+    });
+});
 app.listen(PORT, () => {
     console.log(`Servidor rodando em http://localhost:${PORT}`);
 });

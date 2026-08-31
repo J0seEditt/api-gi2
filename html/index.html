@@ -3,96 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Top 10 Carros Mais Vendidos</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/index.css">
 </head>
-
 <body>
     <header class="header">
-
-        <div class="logo">
-            PTOJETO<span>GI-II</span>
-        </div>
-
-        <nav class="menu">
-            <a href="#">Início</a>
-            <a href="#carros">Carros</a>
-            <a href="#">Sobre</a>
-        </nav>
-
-    </header>
-    <section class="hero">
-
-        <div class="hero-content">
-            <h1>
-                Os carros mais vendidos
-                <span>do Brasil</span>
-            </h1>
-
-            <p>
-                Conheça os modelos mais populares do país,
-                com informações sobre preços, características,
-                cores disponíveis e muito mais.
-            </p>
-
-            <a href="#carros" class="btn">
-                Ver ranking ↓
-            </a>
-
-        </div>
-
-    </section>
-    <main>
-
-        <section class="ranking" id="carros">
-
-            <div class="section-header">
-
-                <div>
-                    <span class="section-subtitle">
-                        RANKING
-                    </span>
-
-                    <h2>
-                        Top 10 mais vendidos
-                    </h2>
-                </div>
-
-                <p>
-                    Dados atualizados através da nossa API.
-                </p>
-
-            </div>
-
-
-            <!-- CARDS SERÃO INSERIDOS AQUI PELA API -->
-            <div class="cars-container" id="carsContainer">
-
-                <!-- Loading inicial -->
-                <div class="loading">
-                    Carregando carros...
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
-    <footer>
-
         <div class="logo">
             PROJETO<span>GI-II</span>
         </div>
+        <nav class="menu">
+            <a href="#">Início</a>
+            <a href="#cadastro">Cadastrar</a>
+            <a href="#carros">Carros</a>
+        </nav>
+    </header>
 
-        <p>
-            © 2026 PROJETOGI-II - Ranking dos carros mais vendidos do Brasil
-        </p>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Os carros mais vendidos <span>do Brasil</span></h1>
+            <p>Conheça os modelos mais populares do país, com informações sobre preços, características, cores disponíveis e muito mais.</p>
+            <a href="#carros" class="btn">Ver ranking ↓</a>
+        </div>
+    </section>
 
+    <main>
+        <!-- NOVA SEÇÃO: Formulário para a rota POST -->
+        <section id="cadastro" style="padding: 2rem; max-width: 600px; margin: 0 auto;">
+            <div class="section-header">
+                <h2>Adicionar Novo Carro</h2>
+                <p>Insira os dados para armazenar um novo veículo na API.</p>
+            </div>
+            
+            <form id="formNovoCarro" style="display: flex; flex-direction: column; gap: 1rem;">
+                <input type="number" id="inputPosicao" placeholder="Posição no Ranking (Ex: 11)" required>
+                <input type="text" id="inputNome" placeholder="Nome do Carro (Ex: Corolla)" required>
+                <input type="text" id="inputMarca" placeholder="Marca (Ex: Toyota)" required>
+                <input type="number" id="inputPreco" placeholder="Preço (R$)" required>
+                <textarea id="inputDescricao" placeholder="Breve descrição do veículo" required></textarea>
+                <button type="submit" class="btn" style="cursor: pointer;">Salvar Carro</button>
+            </form>
+        </section>
+
+        <section class="ranking" id="carros">
+            <div class="section-header">
+                <div>
+                    <span class="section-subtitle">RANKING</span>
+                    <h2>Top 10 mais vendidos</h2>
+                </div>
+                <p>Dados atualizados através da nossa API.</p>
+            </div>
+
+            <!-- CARDS SERÃO INSERIDOS AQUI PELA API -->
+            <div class="cars-container" id="carsContainer">
+                <div class="loading">Carregando carros...</div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="logo">PROJETO<span>GI-II</span></div>
+        <p>© 2026 PROJETOGI-II - Ranking dos carros mais vendidos do Brasil</p>
     </footer>
     <script src="../js/index.js" defer></script>
 </body>

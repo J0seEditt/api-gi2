@@ -22,3 +22,22 @@ function buscarCarros() {
 }
 
 buscarCarros();
+function adicionarCarro(novoCarro) {
+    fetch("http://localhost:8080/serve", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json" 
+        },
+        body: JSON.stringify(novoCarro)
+    })
+    .then(resposta => resposta.json())
+    .then(dados => {
+        console.log("Sucesso:", dados.mensagem);
+
+        buscarCarros(); 
+    })
+    .catch(erro => {
+        console.error("Erro ao tentar adicionar o carro:", erro);
+        alert("Falha ao salvar o novo veículo.");
+    });
+}
