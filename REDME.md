@@ -27,6 +27,7 @@ npm init -y
  Instala o Express (servidor) e o CORS (permissão de acesso)
 npm install express cors
 
+Se apresentar erro add o "type": "module",
 
 Jose Edilson Da Silva Filho
 Leonardo Felix
