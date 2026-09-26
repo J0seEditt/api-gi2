@@ -1,0 +1,25 @@
+name: Inspetor de Qualidade (CI)
+
+on: [push, pull_request]
+
+jobs:
+  testar-api:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 1. Clonar o repositório
+        uses: actions/checkout@v4
+
+      - name: 2. Instalar o interpretador (Node.js)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 3. Instalar dependências do projeto
+        run: npm ci
+
+      - name: 4. Executar Linter
+        run: npm run lint
+
+      - name: 5. Executar Testes com Cobertura
+        run: npm test
