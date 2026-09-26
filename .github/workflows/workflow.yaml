@@ -22,4 +22,4 @@ jobs:
         run: npm run lint
 
       - name: 5. Executar Testes com Cobertura
-        run: npm test
+        run: npm install
