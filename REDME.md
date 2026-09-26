@@ -1,6 +1,6 @@
 Projeto desenvolvido para apresentar os 10 carros mais vendidos do Brasil.
 
-Funcionalidades
+Funcionalidades e diferenciais
 
 - Exibição dos 10 carros mais vendidos
 - Consumo de dados através de uma API
