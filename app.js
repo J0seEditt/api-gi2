@@ -110,13 +110,10 @@ export const listaCarros = {
     }
   ]
 };
-
-// Rota GET
 app.get('/serve', (req, res) => {
   res.json(listaCarros);
 });
 
-// Rota POST com validação para garantir passar nos testes
 app.post('/serve', (req, res) => {
   const novoCarro = req.body;
   
@@ -132,8 +129,6 @@ app.post('/serve', (req, res) => {
     produto: novoCarro 
   });
 });
-
-// Rota DELETE exigida pelo projeto
 app.delete('/serve/:id', (req, res) => {
   const id = parseInt(req.params.id);
   const index = listaCarros.carros.findIndex(c => c.id === id);
