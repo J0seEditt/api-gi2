@@ -24,14 +24,10 @@ function buscarCarros() {
 buscarCarros();
 const form = document.getElementById("formNovoCarro");
 
-// 2. Intercepta o evento de "submit" (clique no botão Salvar)
 form.addEventListener("submit", function(event) {
     
-    // Impede o recarregamento automático da página (Comando crucial!)
     event.preventDefault();
 
-    // 3. Captura os valores dos inputs usando getElementById
-    // Usamos Number() para garantir que posição e preço sejam números, não textos
     const novoCarro = {
         posicao: Number(document.getElementById("inputPosicao").value),
         nome: document.getElementById("inputNome").value,
@@ -42,11 +38,9 @@ form.addEventListener("submit", function(event) {
         vendas_julho_2026: 0 // Valor inicial padrão
     };
 
-    // 4. Envia o objeto montado para a API
     adicionarCarro(novoCarro);
 });
 
-// 5. Função de disparo do POST (com pequenas melhorias de usabilidade)
 function adicionarCarro(novoCarro) {
     fetch("http://localhost:8080/serve", {
         method: "POST",
