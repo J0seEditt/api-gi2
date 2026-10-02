@@ -14,15 +14,6 @@ jobs:
 
       - name: Instalar dependências do projeto
         run: npm install
-      
-      - name: Instalar npm
-        run: npm install 
-
-      - name: Instalar cors
-        run: npm install cors
         
-      - name: Instalar express
-        run: npm install express
-
-      - name: Para testes
-        run: npm install --save-dev jest 
+      - name: Executar testes e validar cobertura
+        run: npm test
