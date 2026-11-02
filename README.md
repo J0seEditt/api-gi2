@@ -1,3 +1,11 @@
+
+# api-gi2
+
+[![CI/CD Pipeline](https://github.com/J0seEditt/api-gi2/actions/workflows/workflow.yaml/badge.svg)](https://github.com/J0seEditt/api-gi2/actions)
+[![Docker Image](https://img.shields.io/docker/v/leozinfake/api-gi2?label=dockerhub)](https://hub.docker.com/r/leozinfake/api-gi2)
+[![Docker Pulls](https://img.shields.io/docker/pulls/leozinfake/api-gi2)](https://hub.docker.com/r/leozinfake/api-gi2)
+
+
 Projeto desenvolvido para apresentar os 10 carros mais vendidos do Brasil.
 
 Funcionalidades e diferenciais
