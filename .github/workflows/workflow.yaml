@@ -1,11 +1,15 @@
-name: Inspetor de Qualidade (CI)
+name: Inspetor de Qualidade e Docker (CI/CD)
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [ "*" ]
+  pull_request:
+    branches: [ "*" ]
 
 jobs:
+  # Job 1: Testes e Linter da API 
   testar-api:
     runs-on: ubuntu-latest
-
     steps:
       - name: 1. Clonar o repositório
         uses: actions/checkout@v4
@@ -19,7 +23,42 @@ jobs:
         run: npm ci
 
       - name: 4. Executar Linter
-        run: npm run lint
+        run: npm run lint --if-present
 
       - name: 5. Executar Testes com Cobertura
-        run: npm install
+        run: npm test --if-present
+
+  # Job 2: Construção da imagem Docker (Executa em QUALQUER alteração/branch)
+  construir-imagem:
+    needs: testar-api
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonar o repositório
+        uses: actions/checkout@v4
+
+      - name: Construir a imagem Docker
+        run: docker build -t api-gi2:${{ github.sha }} .
+
+  # Job 3: Publicação da imagem no DockerHub (Executa APENAS na branch principal 'main')
+  publicar-dockerhub:
+    needs: construir-imagem
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonar o repositório
+        uses: actions/checkout@v4
+
+      - name: Autenticar no DockerHub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Construir e Enviar Imagem para o DockerHub
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/api-gi2:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/api-gi2:${{ github.sha }}
