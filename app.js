@@ -3,24 +3,19 @@ import cors from 'cors';
 
 const app = express();
 
-import path from 'path';
-import { fileURLToPath } from 'url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-
-app.use(express.static(__dirname));
-app.use('/html', express.static(path.join(__dirname, 'html')));
-app.use('/css', express.static(path.join(__dirname, 'css')));
-app.use('/js', express.static(path.join(__dirname, 'js')));
-
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'html', 'index.html'));
-});
 
 app.use(cors());
 app.use(express.json());
+app.use(express.static('.'));
+app.use('/html', express.static('html'));
+app.use('/css', express.static('css'));
+app.use('/js', express.static('js'));
+
+
+app.get('/', (req, res) => {
+  res.sendFile('index.html', { root: './html' });
+});
+
 
 export const listaCarros = {
   carros: [
@@ -126,25 +121,25 @@ export const listaCarros = {
     }
   ]
 };
+
+
 app.get('/serve', (req, res) => {
   res.json(listaCarros);
 });
 
 app.post('/serve', (req, res) => {
   const novoCarro = req.body;
-  
   if (!novoCarro.nome || !novoCarro.marca) {
     return res.status(400).json({ mensagem: 'Dados incompletos' });
   }
-
   novoCarro.id = Date.now();
   listaCarros.carros.push(novoCarro);
-  
   return res.status(201).json({ 
     mensagem: 'Produto armazenado com sucesso!', 
     produto: novoCarro 
   });
 });
+
 app.delete('/serve/:id', (req, res) => {
   const id = parseInt(req.params.id);
   const index = listaCarros.carros.findIndex(c => c.id === id);

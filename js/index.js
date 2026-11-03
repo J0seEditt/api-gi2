@@ -1,5 +1,5 @@
 function buscarCarros() {
-    fetch("http://localhost:8080/serve")
+    fetch("/serve")
         .then(resposta => resposta.json())
         .then(dados => {
             const container = document.getElementById("carsContainer");
@@ -7,12 +7,11 @@ function buscarCarros() {
             dados.carros.forEach(carro => {
                 container.innerHTML += `
                     <div class="card">
-                        <img src="${carro.foto}" alt="${carro.nome}">
                         <h3>${carro.posicao}. ${carro.marca} ${carro.nome}</h3>
                         <p>${carro.descricao}</p>
-                        <p><strong>Preço:</strong> R$ ${carro.preco}</p>
+                        <p><strong>Preço:</strong> R$ ${carro.preco.toLocaleString('pt-BR')}</p>
 
-                        <button onclick="deletarCarro (${carro.id})" 
+                        <button onclick="deletarCarro(${carro.id})" 
                         style="background-color: #dc3545; 
                         color: white; border: none;
                         padding: 10px;
@@ -33,9 +32,9 @@ function buscarCarros() {
 }
 
 buscarCarros();
+
 const form = document.getElementById("formNovoCarro");
 form.addEventListener("submit", function(event) {
-
     event.preventDefault();
 
     const novoCarro = {
@@ -49,8 +48,9 @@ form.addEventListener("submit", function(event) {
     };
     adicionarCarro(novoCarro);
 });
+
 function adicionarCarro(novoCarro) {
-    fetch("http://localhost:8080/serve", {
+    fetch("/serve", {
         method: "POST",
         headers: {
             "Content-Type": "application/json" 
@@ -69,12 +69,13 @@ function adicionarCarro(novoCarro) {
         alert("Falha ao salvar o novo veículo.");
     });
 }
+
 function deletarCarro(id) {
     if (!confirm("Tem certeza que deseja remover este veículo?")) {
         return;
     }
 
-    fetch(`http://localhost:8080/serve/${id}`, {
+    fetch(`/serve/${id}`, {
         method: "DELETE"
     })
     .then(resposta => {
@@ -91,3 +92,6 @@ function deletarCarro(id) {
         alert("Falha na comunicação com o servidor.");
     });
 }
+
+
+window.deletarCarro = deletarCarro;
