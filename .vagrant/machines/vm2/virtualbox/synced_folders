@@ -1,0 +1,1 @@
+{"virtualbox":{"/vagrant_data":{"create":true,"guestpath":"/vagrant_data","hostpath":"D:/J0seDev/Projetos/if/api-gc2","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"D:/J0seDev/Projetos/if/api-gc2","disabled":false,"__vagrantfile":true}}}
