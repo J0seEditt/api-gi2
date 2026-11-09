@@ -1,0 +1,89 @@
+---
+- name: Instalar e configurar API Node.js na VM2
+  hosts: servidores
+  become: true
+
+  vars:
+    app_dir: /opt/api-gc2-ansible
+    repo_url: https://github.com/J0seEditt/api-gi2.git
+    repo_branch: main
+
+  tasks:
+    - name: Instalar Git, curl e certificados
+      apt:
+        name:
+          - git
+          - curl
+          - ca-certificates
+        state: present
+        update_cache: true
+
+    - name: Verificar se Node.js está instalado
+      command: node --version
+      register: node_check
+      changed_when: false
+      failed_when: false
+
+    - name: Baixar script de instalação do Node.js
+      get_url:
+        url: https://deb.nodesource.com/setup_22.x
+        dest: /tmp/nodesource_setup.sh
+        mode: '0644'
+      when: node_check.rc != 0
+
+    - name: Configurar repositório NodeSource
+      command: bash /tmp/nodesource_setup.sh
+      when: node_check.rc != 0
+
+    - name: Instalar Node.js
+      apt:
+        name: nodejs
+        state: present
+
+    - name: Clonar repositório da aplicação
+      git:
+        repo: "{{ repo_url }}"
+        dest: "{{ app_dir }}"
+        version: "{{ repo_branch }}"
+        force: true
+
+    - name: Ajustar proprietário da aplicação
+      file:
+        path: "{{ app_dir }}"
+        owner: vagrant
+        group: vagrant
+        recurse: true
+
+    - name: Instalar dependências da aplicação
+      command: npm ci
+      args:
+        chdir: "{{ app_dir }}"
+      become_user: vagrant
+
+    - name: Criar serviço systemd
+      copy:
+        dest: /etc/systemd/system/api-gc2.service
+        content: |
+          [Unit]
+          Description=API GC2 Node.js
+          After=network.target
+
+          [Service]
+          Type=simple
+          User=vagrant
+          WorkingDirectory=/opt/api-gc2-ansible
+          ExecStart=/usr/bin/node /opt/api-gc2-ansible/serve.js
+          Restart=on-failure
+          RestartSec=5
+          Environment=NODE_ENV=production
+
+          [Install]
+          WantedBy=multi-user.target
+        mode: '0644'
+
+    - name: Habilitar e iniciar API
+      systemd:
+        name: api-gc2
+        enabled: true
+        state: restarted
+        daemon_reload: true
